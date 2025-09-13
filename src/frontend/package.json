@@ -1,8 +1,8 @@
 {
-  "name": "ai-tutor-frontend",
+  "name": "SocraticTutor2",
   "version": "1.0.0",
   "description": "Frontend for simple AI tutor chat",
-  "main": "index.html",
+  "main": "prototype.html",
   "scripts": {
     "start": "live-server"
   },
