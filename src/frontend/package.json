@@ -1,0 +1,14 @@
+{
+  "name": "ai-tutor-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for simple AI tutor chat",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server"
+  },
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
