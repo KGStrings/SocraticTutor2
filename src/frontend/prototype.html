@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simple AI Tutor Chat</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    textarea { width: 80%; height: 80px; }
+    button { margin-top: 10px; padding: 10px 20px; }
+    #response { margin-top: 20px; padding: 10px; border: 1px solid #ccc; min-height: 40px; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h2>AI Tutor Chat</h2>
+  <textarea id="userInput" placeholder="Please type in your question here."></textarea><br />
+  <button onclick="askTutor()">Send</button>
+  <div id="response"></div>
+
+  <script>
+    async function askTutor() {
+      const input = document.getElementById('userInput').value;
+      if (!input.trim()) {
+        alert('Please type a question first!');
+        return;
+      }
+
+      const responseDiv = document.getElementById('response');
+      responseDiv.innerText = 'Thinking...';
+
+      try {
+  const res = await fetch('http://localhost:5000/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: input })
+  });
+
+  if (!res.ok) throw new Error(`Error: ${res.statusText}`);
+
+  const data = await res.json();
+  responseDiv.innerText = data.reply;
+} catch (error) {
+  responseDiv.innerText = 'Oops! Something went wrong: ' + error.message;
+}
+
+
+      // Clear input field
+      document.getElementById('userInput').value = '';
+    }
+  </script>
+</body>
+</html>
